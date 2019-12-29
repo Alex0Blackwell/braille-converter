@@ -4,8 +4,14 @@ body {
   background-color: #414d61;
 }
 
-p {
+h1, h3, p {
   color: white;
+}
+
+h1 {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 40px;
+  text-align: center;
 }
 
 .container {
@@ -64,7 +70,21 @@ p {
 }
 
 .center {
-  width: 190px;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.horizontalW {
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 400px;
+}
+
+.centerBraille {
+  width: 90%;
   padding: 10px;
   text-align: center;
   margin: 0 auto;
@@ -73,10 +93,6 @@ p {
 
 .text-center{
   text-align: center;
-}
-
-.margin-top {
-  margin-top: 10px;
 }
 
 button {
@@ -103,4 +119,19 @@ button {
 .button1:hover {
   background-color: #333333;
   color: white;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+input[type=text]:focus {
+  border: 3px solid #333333;
 }

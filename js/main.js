@@ -1,10 +1,24 @@
-function main() {
+// Brialle logic
+
+var alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+                'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+                'Y', 'Z'];
+
+
+function getChar() {
   // 1 2
   // 3 4
   // 5 6
   var checkBoxes = [0, 0, 0, 0, 0, 0];
-  var alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-  var brailleAlphabet = [[1, 0, 0, 0, 0, 0], [1, 0, 1, 0, 0, 0], [1, 1, 0, 0, 0, 0], [1, 1, 0, 1, 0, 0], [1, 0, 0, 1, 0, 0], [1, 1, 1, 0, 0, 0], [1, 1, 1, 1, 0, 0], [1, 0, 1, 1, 0, 0], [0, 1, 1, 0, 0, 0], [0, 1, 1, 1, 0, 0], [1, 0, 0, 0, 1, 0], [1, 0, 1, 0, 1, 0], [1, 1, 0, 0, 1, 0], [1, 1, 0, 1, 1, 0], [1, 0, 0, 1, 1, 0], [1, 1, 1, 0, 1, 0], [1, 1, 1, 1, 1, 0], [1, 0, 1, 1, 1, 0], [0, 1, 1, 0, 1, 0], [0, 1, 1, 1, 1, 0], [1, 0, 0, 0, 1, 1], [1, 0, 1, 0, 1, 1], [0, 1, 1, 1, 0, 1], [1, 1, 0, 0, 1, 1], [1, 1, 0, 1, 1, 1], [1, 0, 0, 1, 1, 1]];
+  var brailleAlphabet = [[1, 0, 0, 0, 0, 0], [1, 0, 1, 0, 0, 0], [1, 1, 0, 0, 0, 0],
+                         [1, 1, 0, 1, 0, 0], [1, 0, 0, 1, 0, 0], [1, 1, 1, 0, 0, 0],
+                         [1, 1, 1, 1, 0, 0], [1, 0, 1, 1, 0, 0], [0, 1, 1, 0, 0, 0],
+                         [0, 1, 1, 1, 0, 0], [1, 0, 0, 0, 1, 0], [1, 0, 1, 0, 1, 0],
+                         [1, 1, 0, 0, 1, 0], [1, 1, 0, 1, 1, 0], [1, 0, 0, 1, 1, 0],
+                         [1, 1, 1, 0, 1, 0], [1, 1, 1, 1, 1, 0], [1, 0, 1, 1, 1, 0],
+                         [0, 1, 1, 0, 1, 0], [0, 1, 1, 1, 1, 0], [1, 0, 0, 0, 1, 1],
+                         [1, 0, 1, 0, 1, 1], [0, 1, 1, 1, 0, 1], [1, 1, 0, 0, 1, 1],
+                         [1, 1, 0, 1, 1, 1], [1, 0, 0, 1, 1, 1]];
 
   for (var i = 1; i < 7; i++) {
     // Make the array for the inputted braille
@@ -31,6 +45,37 @@ function main() {
   }
   document.getElementById("letterPlace").innerHTML = letter;
 
+}
+
+
+function show_image(src, char) {
+    // For appending braille images
+    var img = document.createElement("img");
+    img.src = src;
+    img.width = 80;
+    img.height = 110;
+    img.alt = `Not a letter (${char})`
+
+    document.getElementById('containBraille').appendChild(img);
+}
+
+
+function translateToBraille() {
+  var userInput = document.getElementById('textIn').value;
+  // Remove all existing children nodes before showing anything new
+  const myNode = document.getElementById("containBraille");
+  while (myNode.firstChild) {
+    myNode.removeChild(myNode.firstChild);
+  }
+  // Append the images for characters
+  for (var i = 0; i < userInput.length; i++) {
+    if(userInput[i] == ' ') {
+      var imageName = "imgs/space.png";
+    } else {
+      var imageName = "imgs/" + userInput[i] + ".png";
+    }
+    show_image(imageName, userInput[i])
+  }
 }
 
 

@@ -8,6 +8,8 @@
   <body>
     <div class="center">
       <div class="centersmall">
+        <h1>Brialle Converter</h1>
+        <p>Press on the braille dots to make them dark thereby selecting the raised dots. The light dots simulate dots that are not raised whereas the raised ones are shown in the dark colour. By pressing the convert button below, the inputted braille is translated to the English character it represents. There exist thirty-eight combinations of raised dots that are not English characters. Can you find them all?</p>
         <table align="center">
           <tr>
             <th>
@@ -54,10 +56,17 @@
             </th>
           </tr>
         </table>
-        <button type="button" class="button1" onclick="main()">Convert</button>
+        <button type="button" class="button1" onclick="getChar()">Convert</button>
       </div>
       <!-- <button type="button" onclick="main()">submit</button> -->
-      <p id="letterPlace"></p>
+      <h3 id="letterPlace">Select brialle shape to determine it's letter</h3>
+      <hr>
+      <p>Enter text below for it to be translated into braille. Spaces will be translated as blank spaces, however, other characters that are not English letters cannot be displayed.</p>
+      <div class="horizontalW"> <input type="text" placeholder="Enter text here" id="textIn"></div>
+      <button type="button" class="button1" onclick="translateToBraille()">Convert</button>
+    </div>
+    <div class="centerBraille" id="containBraille">
+
     </div>
   </body>
   <script src="js/main.js" charset="utf-8"></script>
