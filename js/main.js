@@ -53,6 +53,8 @@ ranNum = Math.floor(Math.random()*26);
 ranLetter = alphabet[ranNum];
 document.getElementById('placeTestLetter').innerHTML = `What is the letter: ${ranLetter} in binary?`;
 var t0 = new Date().getTime()/1000;  // Make global
+// Store 20 seconds as the fastest time if the variable doesnt exist
+if (!localStorage.bestTime) {localStorage.bestTime = 20;}
 
 function testBraille() {
   // For filling in the testing braille
@@ -72,10 +74,18 @@ function testBraille() {
   }
   if(checkBoxes.toString() == brailleAlphabet[ranNum].toString()) {
     var totalT = (t1-t0).toFixed(2);
+    console.log("totalT", totalT);
+    console.log("localStorage.bestTime", localStorage.bestTime);
+    console.log(totalT < parseFloat(localStorage.bestTime));
+
     if(totalT > 20) {
-      document.getElementById('correctness').innerHTML = `That is the correct embossing of ${ranLetter}. That took more than 20 seconds.`;
+      document.getElementById('correctness').innerHTML = `That is the correct embossing of ${ranLetter}. That took more than 20 seconds. Best time: ${localStorage.bestTime}.`;
+    }
+    else if (totalT < parseFloat(localStorage.bestTime)) {
+      localStorage.bestTime = totalT;
+      document.getElementById('correctness').innerHTML = `That is the correct embossing of ${ranLetter}. New best time: ${totalT}!`;
     } else {
-    document.getElementById('correctness').innerHTML = `That is the correct embossing of ${ranLetter}. That took ${totalT} seconds.`
+    document.getElementById('correctness').innerHTML = `That is the correct embossing of ${ranLetter}. That took ${totalT} seconds. Best time: ${localStorage.bestTime}.`
     }
   } else {
     document.getElementById('correctness').innerHTML = `That is not the correct embossing of ${ranLetter}. The correct embossing is shown below:`
