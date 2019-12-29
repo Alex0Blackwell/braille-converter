@@ -1,10 +1,8 @@
-/* Customize the label (the container) */
-
 body {
   background-color: #414d61;
 }
 
-h1, h3, p {
+h1, h2, h3, p {
   color: white;
 }
 
@@ -14,13 +12,16 @@ h1 {
   text-align: center;
 }
 
+ h2 {
+   font-size: 25px;
+ }
+
 .container {
  display: block;
  position: relative;
- padding-left: 35px;
+ padding-left: 30px;
  margin-bottom: 30px;
  cursor: pointer;
- font-size: 22px;
  -webkit-user-select: none;
  -moz-user-select: none;
  -ms-user-select: none;

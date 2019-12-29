@@ -1,73 +1,129 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Braille</title>
     <link rel="stylesheet" href="css/master.css">
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="center">
-      <div class="centersmall">
-        <h1>Brialle Converter</h1>
-        <p>Press on the braille dots to make them dark thereby selecting the raised dots. The light dots simulate dots that are not raised whereas the raised ones are shown in the dark colour. By pressing the convert button below, the inputted braille is translated to the English character it represents. There exist thirty-eight combinations of raised dots that are not English characters. Can you find them all?</p>
-        <table align="center">
-          <tr>
-            <th>
-              <label class="container">
-                <input type="checkbox" id="1">
-                <span class="checkmark"></span>
-              </label>
-            </th>
-            <th>
-              <label class="container">
-                <input type="checkbox" id="2">
-                <span class="checkmark"></span>
-              </label>
-            </th>
-          </tr>
+        <div class="centersmall">
+            <h1>Braille Converter</h1>
+            <p>Press on the braille dots to make them dark thereby selecting the raised dots. The light dots simulate dots that are not raised whereas the raised ones are shown in the dark colour. By pressing the convert button below, the inputted braille is translated to the English character it represents. There exist thirty-eight combinations of raised dots that are not English characters. Can you find them all?</p>
+            <table align="center">
+                <tr>
+                    <th>
+                        <label class="container">
+                          <input type="checkbox" id="1">
+                          <span class="checkmark"></span>
+                        </label>
+                    </th>
+                    <th>
+                        <label class="container">
+                          <input type="checkbox" id="2">
+                          <span class="checkmark"></span>
+                        </label>
+                    </th>
+                </tr>
 
-          <tr>
-            <th>
-              <label class="container">
-                <input type="checkbox" id="3">
-                <span class="checkmark"></span>
-              </label>
-            </th>
-            <th>
-              <label class="container">
-                <input type="checkbox" id="4">
-                <span class="checkmark"></span>
-              </label>
-            </th>
-          </tr>
+                <tr>
+                    <th>
+                        <label class="container">
+                          <input type="checkbox" id="3">
+                          <span class="checkmark"></span>
+                        </label>
+                    </th>
+                    <th>
+                        <label class="container">
+                          <input type="checkbox" id="4">
+                          <span class="checkmark"></span>
+                        </label>
+                    </th>
+                </tr>
 
-          <tr>
-            <th>
-              <label class="container">
-                <input type="checkbox" id="5">
-                <span class="checkmark"></span>
-              </label>
-            </th>
-            <th>
-              <label class="container">
-                <input type="checkbox" id="6">
-                <span class="checkmark"></span>
-              </label>
-            </th>
-          </tr>
-        </table>
-        <button type="button" class="button1" onclick="getChar()">Convert</button>
-      </div>
-      <!-- <button type="button" onclick="main()">submit</button> -->
-      <h3 id="letterPlace">Select brialle shape to determine it's letter</h3>
-      <hr>
-      <p>Enter text below for it to be translated into braille. Spaces will be translated as blank spaces, however, other characters that are not English letters cannot be displayed.</p>
-      <div class="horizontalW"> <input type="text" placeholder="Enter text here" id="textIn"></div>
-      <button type="button" class="button1" onclick="translateToBraille()">Convert</button>
+                <tr>
+                    <th>
+                        <label class="container">
+                          <input type="checkbox" id="5">
+                          <span class="checkmark"></span>
+                        </label>
+                    </th>
+                    <th>
+                        <label class="container">
+                          <input type="checkbox" id="6">
+                          <span class="checkmark"></span>
+                        </label>
+                    </th>
+                </tr>
+            </table>
+            <button type="button" class="button1" onclick="getChar()">Convert</button>
+        </div>
+        <h3 id="letterPlace">Select braille shape to determine it's letter</h3>
+        <hr>
+        <div class="centersmall">
+            <h2>Test yourself</h2>
+            <p>Select the raised dots by making them dark and representing the correct braille image. If the selected braille does not match the correct letter, the correct letter will be shown.</p>
+            <p id="placeTestLetter"></p>
+            <table align="center">
+                <tr>
+                    <th>
+                        <label class="container">
+                          <input type="checkbox" id="7">
+                          <span class="checkmark"></span>
+                        </label>
+                    </th>
+                    <th>
+                        <label class="container">
+                          <input type="checkbox" id="8">
+                          <span class="checkmark"></span>
+                        </label>
+                    </th>
+                </tr>
+
+                <tr>
+                    <th>
+                        <label class="container">
+                          <input type="checkbox" id="9">
+                          <span class="checkmark"></span>
+                        </label>
+                    </th>
+                    <th>
+                        <label class="container">
+                          <input type="checkbox" id="10">
+                          <span class="checkmark"></span>
+                        </label>
+                    </th>
+                </tr>
+
+                <tr>
+                    <th>
+                        <label class="container">
+                          <input type="checkbox" id="11">
+                          <span class="checkmark"></span>
+                        </label>
+                    </th>
+                    <th>
+                        <label class="container">
+                          <input type="checkbox" id="12">
+                          <span class="checkmark"></span>
+                        </label>
+                    </th>
+                </tr>
+            </table>
+            <button type="button" class="button1" onclick="testBraille()">Submit</button>
+            <p id="correctness"></p>
+            <div class="centerBraille" id="containSingleBraille"></div>
+        </div>
+        <hr>
+        <h2>Generate Your Own Braille</h2>
+        <p>Enter text below for it to be translated into braille. Spaces will be translated as blank spaces, however, other characters that are not English letters cannot be displayed.</p>
+        <div class="horizontalW"> <input type="text" placeholder="Enter text here" id="textIn"></div>
+        <button type="button" class="button1" onclick="translateToBraille()" id="transBraille">Convert</button>
     </div>
-    <div class="centerBraille" id="containBraille">
+    <div class="centerBraille" id="containBraille"></div>
+</body>
+<script src="js/main.js" charset="utf-8"></script>
 
-    </div>
-  </body>
-  <script src="js/main.js" charset="utf-8"></script>
 </html>
