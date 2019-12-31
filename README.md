@@ -3,4 +3,4 @@ This braille website is a place to learn about how English characters are repres
 The website also includes a feature in which English sentences comprised of letters can be translated into braille sentences.
 
 ### The Website is Partially Shown Below:
-![](pictures/braille.jpg)
+![](pictures/braille.png)
