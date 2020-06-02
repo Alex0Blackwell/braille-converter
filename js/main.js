@@ -51,7 +51,7 @@ function getChar() {
 // Display once on load
 ranNum = Math.floor(Math.random()*26);
 ranLetter = alphabet[ranNum];
-document.getElementById('placeTestLetter').innerHTML = `What is the letter: ${ranLetter} in binary?`;
+document.getElementById('placeTestLetter').innerHTML = `What is the letter: ${ranLetter} in braille?`;
 var t0 = new Date().getTime()/1000;  // Make global
 // Store 20 seconds as the fastest time if the variable doesnt exist
 if (!localStorage.bestTime) {localStorage.bestTime = 20;}
@@ -99,7 +99,7 @@ function testBraille() {
   // Get a random letter
   ranNum = Math.floor(Math.random()*26);
   ranLetter = alphabet[ranNum];
-  document.getElementById('placeTestLetter').innerHTML = `What is the letter: ${ranLetter} in binary?`;
+  document.getElementById('placeTestLetter').innerHTML = `What is the letter: ${ranLetter} in braille?`;
   // Get the intial time
   t0 = new Date().getTime()/1000;
 }
