@@ -14,7 +14,7 @@ This website serves as a way to convert and learn braille. The website uses six 
 
 > Screenshot of the full page
 
-[![Video](.pictures/braille.gif "Visit the website")](https://alex0blackwell.github.io/pages/braille/index.html)
+[![Video](.pictures/braille-converter.gif "Visit the website")](https://alex0blackwell.github.io/pages/braille/index.html)
 
 ## Technologies
 - HTML / CSS
