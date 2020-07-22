@@ -4,125 +4,106 @@
 <head>
     <meta charset="utf-8">
     <title>Braille</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous">
+
     <link rel="stylesheet" href="css/master.css">
 </head>
 
 <body>
-    <div class="center">
-        <div class="centersmall">
-            <h1>Braille Converter</h1>
-            <p>Press on the braille dots to make them dark thereby selecting the raised dots. The light dots simulate dots that are not raised whereas the raised ones are shown in the dark colour. By pressing the convert button below, the inputted braille is translated to the English character it represents. There exist thirty-eight combinations of raised dots that are not English characters. Can you find them all?</p>
-            <table align="center">
-                <tr>
-                    <th>
-                        <label class="container">
-                          <input type="checkbox" id="1">
-                          <span class="checkmark"></span>
-                        </label>
-                    </th>
-                    <th>
-                        <label class="container">
-                          <input type="checkbox" id="2">
-                          <span class="checkmark"></span>
-                        </label>
-                    </th>
-                </tr>
-
-                <tr>
-                    <th>
-                        <label class="container">
-                          <input type="checkbox" id="3">
-                          <span class="checkmark"></span>
-                        </label>
-                    </th>
-                    <th>
-                        <label class="container">
-                          <input type="checkbox" id="4">
-                          <span class="checkmark"></span>
-                        </label>
-                    </th>
-                </tr>
-
-                <tr>
-                    <th>
-                        <label class="container">
-                          <input type="checkbox" id="5">
-                          <span class="checkmark"></span>
-                        </label>
-                    </th>
-                    <th>
-                        <label class="container">
-                          <input type="checkbox" id="6">
-                          <span class="checkmark"></span>
-                        </label>
-                    </th>
-                </tr>
-            </table>
-            <button type="button" class="button1" onclick="getChar()">Convert</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1>Braille Converter</h1>
+        <p>Press on the braille dots to make them dark thereby selecting the raised dots. The light dots simulate dots that are not raised whereas the raised ones are shown in the dark colour. By pressing the convert button below, the inputted braille is translated to the English character it represents. There exist thirty-eight combinations of raised dots that are not English characters. Can you find them all?</p>
+      </div>
+      <div class="col-12 d-flex justify-content-center">
+        <div class="row braille-container ">
+          <div class="col-6">
+            <div id="1" class="checkmark mb-3" data-checked="false" onclick="toggleClick(this)"></div>
+          </div>
+          <div class="col-6">
+            <div id="2" class="checkmark mb-3" data-checked="false" onclick="toggleClick(this)"></div>
+          </div>
+          <div class="col-6">
+            <div id="3" class="checkmark mb-3" data-checked="false" onclick="toggleClick(this)"></div>
+          </div>
+          <div class="col-6">
+            <div id="4" class="checkmark mb-3" data-checked="false" onclick="toggleClick(this)"></div>
+          </div>
+          <div class="col-6">
+            <div id="5" class="checkmark mb-3" data-checked="false" onclick="toggleClick(this)"></div>
+          </div>
+          <div class="col-6">
+            <div id="6" class="checkmark mb-3" data-checked="false" onclick="toggleClick(this)"></div>
+          </div>
         </div>
-        <h3 id="letterPlace">Select braille shape to determine it's letter</h3>
+      </div>
+      <div class="col-12 text-center">
+        <button type="button" class="button1" onclick="getChar()">Convert</button>
+        <p id="letterPlace">Select braille shape to determine it's letter</p>
+      </div>
+
+
+      <div class="col-12">
         <hr>
-        <div class="centersmall">
-            <h2>Test yourself</h2>
-            <p>Select the raised dots by making them dark and representing the correct braille image. If the selected braille does not match the correct letter, the correct letter will be shown.</p>
-            <p id="placeTestLetter"></p>
-            <table align="center">
-                <tr>
-                    <th>
-                        <label class="container">
-                          <input type="checkbox" id="7">
-                          <span class="checkmark"></span>
-                        </label>
-                    </th>
-                    <th>
-                        <label class="container">
-                          <input type="checkbox" id="8">
-                          <span class="checkmark"></span>
-                        </label>
-                    </th>
-                </tr>
-
-                <tr>
-                    <th>
-                        <label class="container">
-                          <input type="checkbox" id="9">
-                          <span class="checkmark"></span>
-                        </label>
-                    </th>
-                    <th>
-                        <label class="container">
-                          <input type="checkbox" id="10">
-                          <span class="checkmark"></span>
-                        </label>
-                    </th>
-                </tr>
-
-                <tr>
-                    <th>
-                        <label class="container">
-                          <input type="checkbox" id="11">
-                          <span class="checkmark"></span>
-                        </label>
-                    </th>
-                    <th>
-                        <label class="container">
-                          <input type="checkbox" id="12">
-                          <span class="checkmark"></span>
-                        </label>
-                    </th>
-                </tr>
-            </table>
-            <button type="button" class="button1" onclick="testBraille()">Submit</button>
-            <p id="correctness"></p>
-            <div class="centerBraille" id="containSingleBraille"></div>
+        <h2 class="text-center">Test yourself</h2>
+        <p>Select the raised dots by making them dark and representing the correct braille image. If the selected braille does not match the correct letter, the correct letter will be shown.</p>
+        <p id="placeTestLetter" class="text-center"></p>
+        <div class="col-12 d-flex justify-content-center">
+          <div class="row braille-container ">
+            <div class="col-6">
+              <div id="7" class="checkmark mb-3" data-checked="false" onclick="toggleClick(this)"></div>
+            </div>
+            <div class="col-6">
+              <div id="8" class="checkmark mb-3" data-checked="false" onclick="toggleClick(this)"></div>
+            </div>
+            <div class="col-6">
+              <div id="9" class="checkmark mb-3" data-checked="false" onclick="toggleClick(this)"></div>
+            </div>
+            <div class="col-6">
+              <div id="10" class="checkmark mb-3" data-checked="false" onclick="toggleClick(this)"></div>
+            </div>
+            <div class="col-6">
+              <div id="11" class="checkmark mb-3" data-checked="false" onclick="toggleClick(this)"></div>
+            </div>
+            <div class="col-6">
+              <div id="12" class="checkmark mb-3" data-checked="false" onclick="toggleClick(this)"></div>
+            </div>
+          </div>
         </div>
-        <hr>
+      </div>
+      <div class="col-12 text-center">
+        <button type="button" class="button1" onclick="testBraille()">Submit</button>
+      </div>
+      <div class="col-12 text-center">
+        <p id="correctness"></p>
+      </div>
+      <div class="col-12 text-center">
+        <div class="centerBraille" id="containSingleBraille"></div>
+      <hr>
+      </div>
+
+
+      <div class="col-12 text-center">
         <h2>Generate Your Own Braille</h2>
+      </div>
+      <div class="col-12">
         <p>Enter text below for it to be translated into braille. Spaces will be translated as blank spaces, however, other characters that are not English letters cannot be displayed.</p>
-        <div class="horizontalW"> <input type="text" placeholder="Enter text here" id="textIn"></div>
-        <button type="button" class="button1" onclick="translateToBraille()" id="transBraille">Convert</button>
+      </div>
+      <div id="containBraille" class="col-12 text-center">
+      </div>
+      <div class="col-12 text-center">
+        <input id="textIn" class="mb-3" type="text" placeholder="Enter text here...">
+      </div>
     </div>
-    <div class="centerBraille" id="containBraille"></div>
+  </div>
+
+
+
 </body>
 <script src="js/main.js" charset="utf-8"></script>
 

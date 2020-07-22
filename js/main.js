@@ -22,7 +22,7 @@ function getChar() {
 
   for (var i = 1; i < 7; i++) {
     // Make the array for the inputted braille
-    if(document.getElementById(i).checked) {
+    if(document.getElementById(i).getAttribute("data-checked") == "true") {
       checkBoxes[i-1] = 1;
     }
   }
@@ -63,7 +63,7 @@ function testBraille() {
   for (var i = 7; i < 13; i++) {
     // Make the array for the inputted braille
     // Note the id's are 7-12 this time
-    if(document.getElementById(i).checked) {
+    if(document.getElementById(i).getAttribute("data-checked") == "true") {
       checkBoxes[i-7] = 1;
     }
   }
@@ -74,9 +74,6 @@ function testBraille() {
   }
   if(checkBoxes.toString() == brailleAlphabet[ranNum].toString()) {
     var totalT = (t1-t0).toFixed(2);
-    console.log("totalT", totalT);
-    console.log("localStorage.bestTime", localStorage.bestTime);
-    console.log(totalT < parseFloat(localStorage.bestTime));
 
     if(totalT > 20) {
       document.getElementById('correctness').innerHTML = `That is the correct embossing of ${ranLetter}. That took more than 20 seconds. Best time: ${localStorage.bestTime}.`;
@@ -90,11 +87,14 @@ function testBraille() {
   } else {
     document.getElementById('correctness').innerHTML = `That is not the correct embossing of ${ranLetter}. The correct embossing is shown below:`
     //containSingleBraille
-    show_image(`imgs/${ranLetter}.png`, "containSingleBraille");
+    show_image(`imgs/${ranLetter.toLowerCase()}.png`, "containSingleBraille");
   }
   // Get rid of the last braille input
+  let el;
   for (var i = 7; i < 13; i++) {
-    document.getElementById(i).checked = false
+    el = document.getElementById(i);
+    el.setAttribute('data-checked', false);
+    el.style.backgroundColor = "white";
   }
   // Get a random letter
   ranNum = Math.floor(Math.random()*26);
@@ -105,15 +105,15 @@ function testBraille() {
 }
 
 
-function show_image(src, id, char) {
+function show_image(src, id) {
     // For appending braille images
+    var el = document.getElementById(id);
     var img = document.createElement("img");
     img.src = src;
     img.width = 80;
     img.height = 110;
-    img.alt = `Not a letter (${char})`
 
-    document.getElementById(id).appendChild(img);
+    el.appendChild(img);
 }
 
 
@@ -125,49 +125,29 @@ function translateToBraille() {
     myNode.removeChild(myNode.firstChild);
   }
   // Append the images for characters
+  let char, imageName;
   for (var i = 0; i < userInput.length; i++) {
-    if(userInput[i] == ' ') {
-      var imageName = "imgs/space.png";
-    } else {
-      var imageName = "imgs/" + userInput[i] + ".png";
+    char = userInput[i].toLowerCase();
+    // let's not allow double spaces
+    if((char == ' ' && userInput[i-1] != ' ') || char.match(/[a-z]/i)) {
+      imageName = (char == ' ' ? "imgs/space.png" : "imgs/" + char + ".png")
+      show_image(imageName, "containBraille")
     }
-    show_image(imageName, "containBraille", userInput[i])
   }
 }
 
 
+function toggleClick(el) {
+  let state = el.getAttribute('data-checked')
 
-var boxes = document.querySelectorAll('#boxes > div');
-  [].forEach.call(boxes, box => {
-    box.addEventListener('mousemove', e => {
-      document.body.style.setProperty(
-        '--bg-color',
-        box.style.getPropertyValue('--color')
-      );
+  state == "false" ? state = "true" : state = "false"
 
-      var size = parseInt(getComputedStyle(box).width);
+  el.style.backgroundColor = (state == "true" ? "#2e2e2e" : "white");
 
-      // scaling
-      var x = size * .3 * .7 + .7 * e.offsetX;
-      var y = size * .3 * .7 + .7 * e.offsetY;
-
-      box.style.setProperty('--x', x);
-      box.style.setProperty('--y', y);
-      box.style.setProperty('--size', size);
-    });
-  });
+  el.setAttribute('data-checked', state)
+}
 
 
-  // Get the input field
-  var input = document.getElementById("textIn");
-
-  // Execute a function when the user releases a key on the keyboard
-  input.addEventListener("keyup", function(event) {
-    // Number 13 is the "Enter" key on the keyboard
-    if (event.keyCode === 13) {
-      // Cancel the default action, if needed
-      event.preventDefault();
-      // Trigger the button element with a click
-      document.getElementById("transBraille").click();
-    }
-  });
+var input = document.getElementById("textIn");
+input.addEventListener('input', translateToBraille);
+translateToBraille()
